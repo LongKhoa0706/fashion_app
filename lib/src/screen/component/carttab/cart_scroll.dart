@@ -1,5 +1,6 @@
 import 'package:fashion_app/src/const/app_colors.dart';
 import 'package:fashion_app/src/const/app_font.dart';
+import 'package:fashion_app/src/router/router_path.dart';
 import 'package:fashion_app/src/screen/component/carttab/cart_item.dart';
 import 'package:flutter/material.dart';
 
@@ -63,7 +64,7 @@ class CartScroll extends StatelessWidget {
                         fontSize: 15,
                         fontWeight: FontWeight.normal
                       )),
-                  onPressed: () {},
+                  onPressed: () => Navigator.pushNamed(context, CheckoutScreens),
                   child: Text('Checkout'),
                 ),
               ),

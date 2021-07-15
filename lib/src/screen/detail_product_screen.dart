@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:badges/badges.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:fashion_app/src/const/app_colors.dart';
 import 'package:fashion_app/src/const/app_font.dart';
@@ -49,6 +50,15 @@ class _DetailProductScreenState extends State<DetailProductScreen> {
               size: 22,
             ),
           ),
+          IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Badge(
+                badgeContent: Text('3'),
+                position: BadgePosition.topEnd(top: -12,end: -8),
+                child: Icon(Icons.shopping_cart_outlined,color: Colors.black,),
+              )),
         ],
       ),
       body: Container(
@@ -195,156 +205,175 @@ class _DetailProductScreenState extends State<DetailProductScreen> {
                     builder: (BuildContext context) {
                       List<String> listSize = ["S", "M", "XL", "L"];
                       int selectIndex = 0;
-                      return StatefulBuilder(builder: (BuildContext context, void Function(void Function()) setState) {
-                        return Container(
-                          height: MediaQuery.of(context).size.height / 2,
-                          width: MediaQuery.of(context).size.width,
-                          padding:
-                          EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-                          decoration: BoxDecoration(
-                            color: Color(0xffF9F9F9),
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(20),
-                              topRight: Radius.circular(20),
-                            ),
-                          ),
-                          child: Stack(
-                            children: [
-                              ListView(
-                                children: [
-                                  Text(
-                                    "Size",
-                                    style:
-                                    AppFont.semiBold.copyWith(fontSize: 20),
-                                  ),
-                                  SizedBox(
-                                    height: 18,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: Wrap(
-                                          children: List.generate(listSize.length, (index) => Padding(
-                                            padding:
-                                            const EdgeInsets.only(
-                                                right: 15,
-                                                bottom: 15),
-                                            child: Container(
-                                              width: 100,
-                                              height: 40,
-                                              decoration: BoxDecoration(
-                                                color: Colors.white,
-                                                borderRadius:
-                                                BorderRadius.circular(
-                                                    8),
-                                                border: Border.all(
-                                                    color: selectIndex == index ? Colors.red : Colors.black,
-                                                    width: .2),
-                                              ),
-                                              child: InkWell(
-                                                onTap: (){
-                                                  setState(() {
-                                                    selectIndex = index;
-                                                  });
-                                                },
-                                                child: Center(
-                                                  child: Text(
-                                                    listSize[index],
-                                                    style: AppFont.medium
-                                                        .copyWith(
-                                                        fontSize: 16,
-                                                        color: Colors
-                                                            .black),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          )),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    "Colors",
-                                    style:
-                                    AppFont.semiBold.copyWith(fontSize: 20),
-                                  ),
-                                  SizedBox(
-                                    height: 18,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: Wrap(
-                                          children: listSize
-                                              .map((e) => Padding(
-                                            padding:
-                                            const EdgeInsets.only(
-                                                right: 15,
-                                                bottom: 15),
-                                            child: Container(
-                                              width: 100,
-                                              height: 40,
-                                              decoration: BoxDecoration(
-                                                color: Colors.white,
-                                                borderRadius:
-                                                BorderRadius.circular(
-                                                    8),
-                                                border: Border.all(
-                                                    color: Colors.black,
-                                                    width: .2),
-                                              ),
-                                              child: Center(
-                                                child: Text(
-                                                  e,
-                                                  style: AppFont.medium
-                                                      .copyWith(
-                                                      fontSize: 16,
-                                                      color: Colors
-                                                          .black),
-                                                ),
-                                              ),
-                                            ),
-                                          ))
-                                              .toList(),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-
-                                  SizedBox(
-                                    height: 15,
-                                  ),
-                                ],
+                      return StatefulBuilder(
+                        builder: (BuildContext context,
+                            void Function(void Function()) setState) {
+                          return Container(
+                            height: MediaQuery.of(context).size.height / 2,
+                            width: MediaQuery.of(context).size.width,
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 15, vertical: 20),
+                            decoration: BoxDecoration(
+                              color: Color(0xffF9F9F9),
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(20),
+                                topRight: Radius.circular(20),
                               ),
-                              Align(
-                                alignment: Alignment.bottomCenter,
-                                child: SizedBox(
-                                  width: double.infinity,
-                                  height: 50,
-                                  child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      primary: AppColors.primaryColorRed,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(40.0),
-                                      ),
+                            ),
+                            child: Stack(
+                              children: [
+                                ListView(
+                                  children: [
+                                    Text(
+                                      "Size",
+                                      style: AppFont.semiBold
+                                          .copyWith(fontSize: 20),
                                     ),
-                                    onPressed: () {},
-                                    child: Text(
-                                      "Add to cart".toUpperCase(),
-                                      style: AppFont.medium.copyWith(
-                                          fontSize: 17, color: Colors.white),
+                                    SizedBox(
+                                      height: 18,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: Wrap(
+                                            children: List.generate(
+                                                listSize.length,
+                                                (index) => Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              right: 15,
+                                                              bottom: 15),
+                                                      child: Container(
+                                                        width: 100,
+                                                        height: 40,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: Colors.white,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(8),
+                                                          border: Border.all(
+                                                              color:
+                                                                  selectIndex ==
+                                                                          index
+                                                                      ? Colors
+                                                                          .red
+                                                                      : Colors
+                                                                          .black,
+                                                              width: .2),
+                                                        ),
+                                                        child: InkWell(
+                                                          onTap: () {
+                                                            setState(() {
+                                                              selectIndex =
+                                                                  index;
+                                                            });
+                                                          },
+                                                          child: Center(
+                                                            child: Text(
+                                                              listSize[index],
+                                                              style: AppFont
+                                                                  .medium
+                                                                  .copyWith(
+                                                                      fontSize:
+                                                                          16,
+                                                                      color: Colors
+                                                                          .black),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    )),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Text(
+                                      "Colors",
+                                      style: AppFont.semiBold
+                                          .copyWith(fontSize: 20),
+                                    ),
+                                    SizedBox(
+                                      height: 18,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: Wrap(
+                                            children: listSize
+                                                .map((e) => Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              right: 15,
+                                                              bottom: 15),
+                                                      child: Container(
+                                                        width: 100,
+                                                        height: 40,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: Colors.white,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(8),
+                                                          border: Border.all(
+                                                              color:
+                                                                  Colors.black,
+                                                              width: .2),
+                                                        ),
+                                                        child: Center(
+                                                          child: Text(
+                                                            e,
+                                                            style: AppFont
+                                                                .medium
+                                                                .copyWith(
+                                                                    fontSize:
+                                                                        16,
+                                                                    color: Colors
+                                                                        .black),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ))
+                                                .toList(),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 15,
+                                    ),
+                                  ],
+                                ),
+                                Align(
+                                  alignment: Alignment.bottomCenter,
+                                  child: SizedBox(
+                                    width: double.infinity,
+                                    height: 50,
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        primary: AppColors.primaryColorRed,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(40.0),
+                                        ),
+                                      ),
+                                      onPressed: () {},
+                                      child: Text(
+                                        "Add to cart".toUpperCase(),
+                                        style: AppFont.medium.copyWith(
+                                            fontSize: 17, color: Colors.white),
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        );
-                      },);
+                              ],
+                            ),
+                          );
+                        },
+                      );
                     },
                   );
                 },
