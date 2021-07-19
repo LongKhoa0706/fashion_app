@@ -1,4 +1,4 @@
-# Flutter E-commerce Fashtion
+# Flutter E-commerce Fashion
 
 - Figma based on this project and improving it
 
