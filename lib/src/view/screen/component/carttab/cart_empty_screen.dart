@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 class CartEmptyScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Center(
+        child: Text("Rỗng"),
+      ),
+    );
   }
 }

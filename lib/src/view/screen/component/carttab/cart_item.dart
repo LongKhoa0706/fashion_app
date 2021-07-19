@@ -1,11 +1,18 @@
 import 'package:fashion_app/src/const/app_font.dart';
+import 'package:fashion_app/src/data/model/order.dart';
+import 'package:fashion_app/src/viewmodel/cart_viewmodel.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CartItem extends StatelessWidget {
+  final Order order;
+
+  const CartItem({Key? key, required this.order}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
+    final cartViewModel = Provider.of<CartViewModel>(context,listen: true);
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -16,7 +23,7 @@ class CartItem extends StatelessWidget {
             decoration: BoxDecoration(
               image: DecorationImage(
                   image: NetworkImage(
-                      'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/gettyimages-1228869491.jpg?crop=0.9995119570522205xw:1xh;center,top&resize=480:*'),
+                      order.product!.urlImage![0]),
                   fit: BoxFit.cover),
               borderRadius: BorderRadius.circular(5),
             ),
@@ -31,7 +38,7 @@ class CartItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "T Shirt",
+                    order.product!.title!,
                     overflow: TextOverflow.ellipsis,
                     style: AppFont.semiBold.copyWith(
                         color: Colors.black,
@@ -53,7 +60,7 @@ class CartItem extends StatelessWidget {
                                   fontSize: 14),
                               children: [
                                 TextSpan(
-                                  text: "Gray",
+                                  text:  order.product!.inventory![0].color,
                                   style: AppFont.regular.copyWith(
                                       color: Colors.black,
                                       fontWeight: FontWeight.w400,
@@ -75,7 +82,7 @@ class CartItem extends StatelessWidget {
                                   fontSize: 14),
                               children: [
                                 TextSpan(
-                                  text: "M",
+                                  text: order.product!.inventory![0].size,
                                   style: AppFont.regular.copyWith(
                                       color: Colors.black,
                                       fontWeight: FontWeight.w400,
@@ -92,7 +99,7 @@ class CartItem extends StatelessWidget {
                   Row(
                     children: [
                       Container(
-                        width: 90,
+                        width: 100,
                         padding: EdgeInsets.symmetric(horizontal: 10,vertical: 7),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
@@ -101,9 +108,14 @@ class CartItem extends StatelessWidget {
                         child: Row(
                           children: [
                             Flexible(
-                              child: Icon(
-                                Icons.add,
-                                size: 18,
+                              child: InkWell(
+                                onTap: (){
+                                  cartViewModel.increQuantity(order,order.product!.inventory![0]);
+                                },
+                                child: Icon(
+                                  Icons.add,
+                                  size: 18,
+                                ),
                               ),
                               flex: 1,
                             ),
@@ -111,17 +123,21 @@ class CartItem extends StatelessWidget {
                               width: 15,
                             ),
                             Flexible(
-                              child: Text('1'),
                               flex: 1,
-
+                              child: Text(order.quantity.toString()),
                             ),
                             SizedBox(
                               width: 15,
                             ),
                             Flexible(
-                              child: Icon(
-                                Icons.remove,
-                                size: 18,
+                              child: InkWell(
+                                onTap: (){
+                                  cartViewModel.deceQuanity(order);
+                                },
+                                child: Icon(
+                                  Icons.remove,
+                                  size: 18,
+                                ),
                               ),
                               flex: 1,
                             ),
@@ -129,7 +145,7 @@ class CartItem extends StatelessWidget {
                         ),
                       ),
                       Spacer(),
-                      Text("30%")
+                      Text("${order.product!.price!} \$")
                     ],
                   ),
                 ],

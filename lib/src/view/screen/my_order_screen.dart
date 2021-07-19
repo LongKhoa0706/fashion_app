@@ -1,6 +1,6 @@
 import 'package:fashion_app/src/const/app_font.dart';
 import 'package:fashion_app/src/router/router_path.dart';
-import 'package:fashion_app/src/screen/component/myorder/order_product.dart';
+import 'package:fashion_app/src/view/screen/component/myorder/order_product.dart';
 import 'package:flutter/material.dart';
 
 class MyOrderScreen extends StatelessWidget {

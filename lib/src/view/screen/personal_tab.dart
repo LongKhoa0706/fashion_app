@@ -1,17 +1,26 @@
 import 'package:fashion_app/src/const/app_font.dart';
 import 'package:fashion_app/src/router/router_path.dart';
+import 'package:fashion_app/src/viewmodel/product_viewmodel.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class PersonalTab extends StatelessWidget {
+class PersonalTab extends StatefulWidget {
+  @override
+  _PersonalTabState createState() => _PersonalTabState();
+}
+
+class _PersonalTabState extends State<PersonalTab> {
   Map<String, String> listInfomation = {
     'My orders': 'Already have 12 orders',
     'Shipping addresses': '3 address',
     'Payment methods': 'Visa ',
     'My reviews': 'Reviews for 4 items',
+    'Recent View': 'Reviews for 4 items',
   };
 
   @override
   Widget build(BuildContext context) {
+    var productVM = Provider.of<ProductViewModel>(context,listen: false);
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
       child: Column(
@@ -75,6 +84,9 @@ class PersonalTab extends StatelessWidget {
                     switch(index){
                       case 0:
                          Navigator.pushNamed(context, MyOrderScreens);
+                        break;
+                      case 4:
+                        Navigator.pushNamed(context, RecentViewScreens,arguments: productVM.listRecent);
                         break;
                     }
                   },

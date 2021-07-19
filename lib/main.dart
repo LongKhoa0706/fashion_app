@@ -1,6 +1,9 @@
-import 'package:fashion_app/src/provider/bottom_navigate_provider.dart';
+import 'package:fashion_app/src/data/service/product_service.dart';
 import 'package:fashion_app/src/router/routerr.dart';
-import 'package:fashion_app/src/screen/dash_board_screen.dart';
+import 'package:fashion_app/src/view/screen/dash_board_screen.dart';
+import 'package:fashion_app/src/viewmodel/bottom_navigate_provider.dart';
+import 'package:fashion_app/src/viewmodel/cart_viewmodel.dart';
+import 'package:fashion_app/src/viewmodel/product_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,6 +18,8 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_)=> BottomNavigationProvider()),
+        ChangeNotifierProvider(create: (_)=> CartViewModel()),
+        ChangeNotifierProvider(create: (_)=> ProductViewModel()..getListProduct()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

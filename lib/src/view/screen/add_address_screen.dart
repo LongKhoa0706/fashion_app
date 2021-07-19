@@ -52,6 +52,30 @@ class AddAddressScreen extends StatelessWidget {
             SizedBox(
               height: 40,
             ),
+            Container(
+              width: double.infinity,
+              padding: EdgeInsets.symmetric(horizontal: 10,vertical: 5),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(5),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(.1),
+                      blurRadius: 1,
+                      spreadRadius: 1,
+                      offset: Offset(2, 2),
+                    ),
+                  ]),
+              child: TextFormField(
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: "Full name",
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 40,
+            ),
             SizedBox(
               width: double.infinity,
               height: 49,

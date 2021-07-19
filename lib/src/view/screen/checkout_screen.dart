@@ -11,7 +11,7 @@ class CheckoutScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         centerTitle: true,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () => Navigator.pop(context),
           icon: Icon(
             Icons.arrow_back_ios,
             size: 20,
@@ -79,6 +79,17 @@ class CheckoutScreen extends StatelessWidget {
                     height: 8,
                   ),
                   Text(
+                    "0927827763",
+                    style: AppFont.regular.copyWith(
+                      fontWeight: FontWeight.w400,
+                      color: Colors.black,
+                      fontSize: 15,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  Text(
                     "194 ngyen cong tru",
                     style: AppFont.regular.copyWith(
                       fontWeight: FontWeight.w400,
@@ -141,7 +152,7 @@ class CheckoutScreen extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: 15,
+              height: 20,
             ),
             Row(
               children: [
@@ -163,7 +174,7 @@ class CheckoutScreen extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: 15,
+              height: 20,
             ),
             Row(
               children: [

@@ -1,4 +1,4 @@
-import 'package:fashion_app/src/screen/component/favoritetab/favorite_scroll.dart';
+import 'package:fashion_app/src/view/screen/component/favoritetab/favorite_scroll.dart';
 import 'package:flutter/material.dart';
 
 class FavoriteTab extends StatelessWidget {

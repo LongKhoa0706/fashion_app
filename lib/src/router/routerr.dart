@@ -1,11 +1,14 @@
+import 'package:fashion_app/src/data/model/product.dart';
 import 'package:fashion_app/src/router/router_path.dart';
-import 'package:fashion_app/src/screen/add_address_screen.dart';
-import 'package:fashion_app/src/screen/checkout_screen.dart';
-import 'package:fashion_app/src/screen/choice_address_screen.dart';
-import 'package:fashion_app/src/screen/detail_product_screen.dart';
-import 'package:fashion_app/src/screen/my_order_screen.dart';
-import 'package:fashion_app/src/screen/order_detail_screen.dart';
-import 'package:fashion_app/src/screen/order_success_screen.dart';
+
+import 'package:fashion_app/src/view/screen/add_address_screen.dart';
+import 'package:fashion_app/src/view/screen/checkout_screen.dart';
+import 'package:fashion_app/src/view/screen/choice_address_screen.dart';
+import 'package:fashion_app/src/view/screen/detail_product_screen.dart';
+import 'package:fashion_app/src/view/screen/my_order_screen.dart';
+import 'package:fashion_app/src/view/screen/order_detail_screen.dart';
+import 'package:fashion_app/src/view/screen/order_success_screen.dart';
+import 'package:fashion_app/src/view/screen/recent_view_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
@@ -14,7 +17,8 @@ class Routerr{
   static RouteFactory onGenerateRouter = (RouteSettings settings){
     switch(settings.name){
       case DetailProductScreens:
-        return _generateMaterialRoute(DetailProductScreen());
+        final arg = settings.arguments! as Product;
+        return _generateMaterialRoute(DetailProductScreen(product: arg,));
       case CheckoutScreens:
         return _generateMaterialRoute(CheckoutScreen());
       case ChoiceAddressScreens:
@@ -27,6 +31,9 @@ class Routerr{
         return _generateMaterialRoute(MyOrderScreen());
       case OrderDetailScreens:
         return _generateMaterialRoute(OrderDetailScreen());
+      case RecentViewScreens:
+        final arg = settings.arguments! as List<Product>;
+        return _generateMaterialRoute(RecentViewScreen(listRecentProduct: arg,));
       default:
         return _generateMaterialRoute(Center(child: Text("On Unknown Router",style: TextStyle(
           color: Colors.red,

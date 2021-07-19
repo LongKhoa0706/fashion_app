@@ -1,13 +1,15 @@
 import 'package:fashion_app/src/const/app_colors.dart';
-import 'package:fashion_app/src/provider/bottom_navigate_provider.dart';
-import 'package:fashion_app/src/screen/cart_tab.dart';
-import 'package:fashion_app/src/screen/category_tab.dart';
-import 'package:fashion_app/src/screen/favorite_tab.dart';
-import 'package:fashion_app/src/screen/home_tab.dart';
-import 'package:fashion_app/src/screen/personal_tab.dart';
+import 'package:fashion_app/src/view/screen/cart_tab.dart';
+import 'package:fashion_app/src/view/screen/category_tab.dart';
+import 'package:fashion_app/src/view/screen/favorite_tab.dart';
+import 'package:fashion_app/src/view/screen/personal_tab.dart';
+
+import 'package:fashion_app/src/viewmodel/bottom_navigate_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+
+import 'home_tab.dart';
 
 class DashBoardScreen extends StatefulWidget {
   @override

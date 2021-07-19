@@ -1,5 +1,6 @@
-import 'package:fashion_app/src/screen/component/favoritetab/favorite_item.dart';
 import 'package:flutter/material.dart';
+
+import 'favorite_item.dart';
 
 class FavoriteScroll extends StatelessWidget {
   @override
