@@ -1,11 +1,15 @@
 import 'package:fashion_app/src/const/app_font.dart';
+import 'package:fashion_app/src/data/model/order.dart';
 import 'package:fashion_app/src/router/router_path.dart';
 import 'package:fashion_app/src/view/screen/component/myorder/order_product.dart';
+import 'package:fashion_app/src/viewmodel/cart_viewmodel.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MyOrderScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final cartViewModel = Provider.of<CartViewModel>(context,listen: false);
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -37,15 +41,19 @@ class MyOrderScreen extends StatelessWidget {
               ),
               Expanded(
                 child: ListView.builder(
-                  itemCount: 10,
+                  itemCount: cartViewModel.listOrder.length,
                   itemBuilder: (_,index){
+                    Order order = cartViewModel.listOrder[index];
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 20),
                       child: InkWell(
                         onTap: (){
-                          Navigator.pushNamed(context, OrderDetailScreens);
+                          print(order.listItemCart!.length);
+                          // Navigator.pushNamed(context, OrderDetailScreens,arguments: order);
                         },
-                        child: OrderProduct(),
+                        child: OrderProduct(
+                          order: order,
+                        ),
                       )
                     );
                   },

@@ -10,7 +10,7 @@ class ProductService {
         price: 200.000,
         amountProduct: 10,
         createAt: "10/10/2021",
-        isLike: 0,
+        isLike: false,
         urlImage: [
           'https://cafefcdn.com/thumb_w/650/2019/6/4/5069g-3x2-forever-in-florals-768x512-1559636365541203324963-crop-15596363709051973797845.jpg'
         ],
@@ -48,7 +48,7 @@ class ProductService {
         price: 350.000,
         amountProduct: 2,
         createAt: "21/2/2020",
-        isLike: 0,
+        isLike: false,
         urlImage: [
           'https://vcdn1-giaitri.vnecdn.net/2015/04/23/1-4854-1429761605.jpg?w=0&h=0&q=100&dpr=2&fit=crop&s=Bp8MxcmkYfVaR4Hvlg9qAg'
         ],
@@ -74,7 +74,7 @@ class ProductService {
         price: 200.000,
         amountProduct: 2,
         createAt: "10/10/2012",
-        isLike: 0,
+        isLike: false,
         urlImage: [
           'https://cafefcdn.com/thumb_w/650/2019/6/4/5069g-3x2-forever-in-florals-768x512-1559636365541203324963-crop-15596363709051973797845.jpg'
         ],
@@ -86,7 +86,7 @@ class ProductService {
         price: 210.000,
         amountProduct: 10,
         createAt: "10/10/2029",
-        isLike: 0,
+        isLike: false,
         urlImage: [
           'https://cafefcdn.com/thumb_w/650/2019/6/4/5069g-3x2-forever-in-florals-768x512-1559636365541203324963-crop-15596363709051973797845.jpg'
         ],
@@ -98,7 +98,7 @@ class ProductService {
         price: 500.000,
         amountProduct: 10,
         createAt: "10/10/2014",
-        isLike: 0,
+        isLike: false,
         urlImage: [
           'https://cafefcdn.com/thumb_w/650/2019/6/4/5069g-3x2-forever-in-florals-768x512-1559636365541203324963-crop-15596363709051973797845.jpg'
         ],
@@ -110,7 +110,7 @@ class ProductService {
         price: 150.000,
         amountProduct: 2,
         createAt: "10/10/2011",
-        isLike: 0,
+        isLike: false,
         urlImage: [
           'https://cafefcdn.com/thumb_w/650/2019/6/4/5069g-3x2-forever-in-florals-768x512-1559636365541203324963-crop-15596363709051973797845.jpg'
         ],
@@ -122,7 +122,7 @@ class ProductService {
         price: 520.000,
         amountProduct: 10,
         createAt: "24/02/2012",
-        isLike: 0,
+        isLike: false,
         urlImage: [
           'https://cafefcdn.com/thumb_w/650/2019/6/4/5069g-3x2-forever-in-florals-768x512-1559636365541203324963-crop-15596363709051973797845.jpg'
         ],

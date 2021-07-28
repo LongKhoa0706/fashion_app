@@ -1,9 +1,15 @@
 import 'package:fashion_app/src/const/app_font.dart';
+import 'package:fashion_app/src/data/model/order.dart';
 import 'package:flutter/material.dart';
 
 class OrderDetailScreen extends StatelessWidget {
+  final Order order;
+
+  const OrderDetailScreen({Key? key, required this.order}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -30,14 +36,14 @@ class OrderDetailScreen extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  "Order No: 123123",
+                  "Order No: ${order.orderNumber}",
                   style: AppFont.semiBold.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Spacer(),
                 Text(
-                  "05/12/2019",
+                  order.createAt.toString(),
                   style: AppFont.regular
                       .copyWith(color: Colors.grey, fontSize: 14),
                 ),
@@ -47,14 +53,14 @@ class OrderDetailScreen extends StatelessWidget {
               height: 20,
             ),
             Text(
-              '3 items',
+              '${order.listItemCart!.length} items',
               style: AppFont.medium.copyWith(color: Colors.black, fontSize: 14),
             ),
             SizedBox(
               height: 20,
             ),
             ListView.builder(
-              itemCount: 2,
+              itemCount: order.listItemCart!.length,
               shrinkWrap: true,
               padding: EdgeInsets.all(0.0),
               itemBuilder: (_, index) {
@@ -237,11 +243,11 @@ class OrderDetailScreen extends StatelessWidget {
             buildOrderInformation(title: "Shipping Address", description: "akndjkdasnndjnajskn"),
 
             SizedBox(
-              height: 15,
+              height: 25,
             ),
             buildOrderInformation(title: "Payment method", description: "akndjkdasnndjnajskn"),
             SizedBox(
-              height: 15,
+              height: 25,
             ),
             buildOrderInformation(title: "Total Amount", description: "133"),
 

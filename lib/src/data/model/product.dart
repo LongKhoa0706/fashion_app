@@ -7,7 +7,7 @@ class Product {
   double? price;
   int? amountProduct;
   String? createAt;
-  int? isLike;
+  bool? isLike;
   List<String>? urlImage;
   String? category;
   List<Inventory>? inventory;

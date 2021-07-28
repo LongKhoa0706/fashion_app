@@ -1,6 +1,6 @@
 import 'package:fashion_app/src/const/app_colors.dart';
 import 'package:fashion_app/src/const/app_font.dart';
-import 'package:fashion_app/src/data/model/order.dart';
+import 'package:fashion_app/src/data/model/cart.dart';
 import 'package:fashion_app/src/router/router_path.dart';
 import 'package:fashion_app/src/viewmodel/cart_viewmodel.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 import 'cart_item.dart';
 
 class CartScroll extends StatelessWidget {
-  final List<Order> listCart;
+  final List<Cart> listCart;
   const CartScroll({Key? key, required this.listCart}) : super(key: key);
 
 
@@ -27,7 +27,6 @@ class CartScroll extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
               buildTextHeader(title: "Shipping address"),
               SizedBox(
                 height: 20,
@@ -107,7 +106,7 @@ class CartScroll extends StatelessWidget {
                 padding: EdgeInsets.all(0.0),
                 itemCount: listCart.length,
                 itemBuilder: (_, index) {
-                  Order order = listCart[index];
+                  Cart order = listCart[index];
                   return Dismissible(
                     key: UniqueKey(),
                     onDismissed: (value) {
@@ -255,8 +254,10 @@ class CartScroll extends StatelessWidget {
                       primary: AppColors.primaryColorRed,
                       textStyle: AppFont.medium.copyWith(
                           fontSize: 15, fontWeight: FontWeight.normal)),
-                  onPressed: () =>
-                      Navigator.pushNamed(context, CheckoutScreens),
+                  onPressed: (){
+                    cartViewModel.checkOutCart();
+                    // Navigator.pushNamed(context, OrderSuccessScreens),
+                  },
                   child: Text('Checkout'),
                 ),
               ),

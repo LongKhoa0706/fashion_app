@@ -1,11 +1,11 @@
 import 'package:fashion_app/src/const/app_font.dart';
-import 'package:fashion_app/src/data/model/order.dart';
+import 'package:fashion_app/src/data/model/cart.dart';
 import 'package:fashion_app/src/viewmodel/cart_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class CartItem extends StatelessWidget {
-  final Order order;
+  final Cart order;
 
   const CartItem({Key? key, required this.order}) : super(key: key);
 

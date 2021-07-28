@@ -1,9 +1,17 @@
 import 'package:fashion_app/src/const/app_font.dart';
+import 'package:fashion_app/src/data/model/order.dart';
 import 'package:flutter/material.dart';
 
 class OrderProduct extends StatelessWidget {
+  final Order order;
+  const OrderProduct({Key? key, required this.order}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
+    // int totalProduct = 0;
+    // totalProduct += order.listItemCart!.length;
+    // print(totalProduct);
+
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
@@ -25,7 +33,10 @@ class OrderProduct extends StatelessWidget {
             width: 120,
             height: 120,
             decoration: BoxDecoration(
-              color: Colors.red,
+              image: DecorationImage(
+                image: NetworkImage(order.listItemCart!.first.product!.urlImage![0]),
+                fit: BoxFit.cover
+              ),
               borderRadius: BorderRadius.only(topLeft: Radius.circular(8),
                   bottomLeft: Radius.circular(8)),
             ),
@@ -35,13 +46,13 @@ class OrderProduct extends StatelessWidget {
           ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(12),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Myrygbhjbjhbjjbjknjknnjkkkjnkjkjjnkjnnnk",
+                    order.listItemCart!.first.product!.title!,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: AppFont.bold.copyWith(
@@ -86,7 +97,7 @@ class OrderProduct extends StatelessWidget {
                                 ),
                                 children: [
                                   TextSpan(
-                                    text: "11 VND",
+                                    text: order.total.toString(),
                                     style: AppFont.semiBold.copyWith(
                                       fontSize: 13,
                                       fontWeight: FontWeight.bold,
@@ -103,7 +114,7 @@ class OrderProduct extends StatelessWidget {
                     height: 10,
                   ),
                   Text(
-                    "22-10-2021",
+                    order.createAt.toString(),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: AppFont.regular.copyWith(

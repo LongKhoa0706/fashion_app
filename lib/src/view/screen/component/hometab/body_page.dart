@@ -7,13 +7,19 @@ import 'package:provider/provider.dart';
 
 import 'cart_product.dart';
 
-class BodyPage extends StatelessWidget {
+class BodyPage extends StatefulWidget {
 
+  @override
+  _BodyPageState createState() => _BodyPageState();
+}
+
+class _BodyPageState extends State<BodyPage> {
 
   @override
   Widget build(BuildContext context) {
     ProductViewModel prductVM = Provider.of(context,listen: false);
     double cardWidth = ((MediaQuery.of(context).size.width - 40) / 2);
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Column(
@@ -41,6 +47,7 @@ class BodyPage extends StatelessWidget {
                   child: CartProduct(
                     index: index,
                     product: product,
+
                   ),
                 );
               },
@@ -70,6 +77,7 @@ class BodyPage extends StatelessWidget {
       ),
     );
   }
+
   Widget buildHeaderBody({required String title,required String description}){
     return Row(
       children: [

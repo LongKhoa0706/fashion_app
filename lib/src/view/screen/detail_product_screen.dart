@@ -7,6 +7,8 @@ import 'package:fashion_app/src/const/app_colors.dart';
 import 'package:fashion_app/src/const/app_font.dart';
 import 'package:fashion_app/src/data/model/inventory.dart';
 import 'package:fashion_app/src/data/model/product.dart';
+import 'package:fashion_app/src/router/router_path.dart';
+import 'package:fashion_app/src/viewmodel/auth_viemodel.dart';
 import 'package:fashion_app/src/viewmodel/cart_viewmodel.dart';
 import 'package:fashion_app/src/viewmodel/choice_chip.dart';
 import 'package:fashion_app/src/viewmodel/product_viewmodel.dart';
@@ -35,6 +37,8 @@ class _DetailProductScreenState extends State<DetailProductScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final cartViewModel = Provider.of<CartViewModel>(context,listen: true);
+    final authViewModel = Provider.of<AuthViewModel>(context,listen: true);
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
@@ -69,8 +73,12 @@ class _DetailProductScreenState extends State<DetailProductScreen> {
                 Navigator.pop(context);
               },
               icon: Badge(
-                badgeContent: Text('3'),
-                position: BadgePosition.topEnd(top: -12,end: -8),
+                badgeColor: AppColors.primaryColorRed,
+                badgeContent: Text(cartViewModel.productCount.toString(),style: AppFont.regular.copyWith(
+                  fontSize: 12,
+                  color: Colors.white
+                ),),
+                position: BadgePosition.topEnd(top: -8,end: -5),
                 child: Icon(Icons.shopping_cart_outlined,color: Colors.black,),
               )),
         ],
@@ -207,7 +215,11 @@ class _DetailProductScreenState extends State<DetailProductScreen> {
                   ),
                 ),
                 onPressed: () {
-                  showChooseSize(ctx,widget.product);
+                  if (authViewModel.isLoggedIn == false) {
+                    Navigator.pushNamed(context, LoginScreens);
+                  }else{
+                    showChooseSize(ctx,widget.product);
+                  }
                 },
                 child: Text(
                   "Add to cart".toUpperCase(),

@@ -1,5 +1,6 @@
 import 'package:fashion_app/src/const/app_font.dart';
 import 'package:fashion_app/src/router/router_path.dart';
+import 'package:fashion_app/src/view/screen/choice_address_screen.dart';
 import 'package:fashion_app/src/viewmodel/product_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -84,6 +85,9 @@ class _PersonalTabState extends State<PersonalTab> {
                     switch(index){
                       case 0:
                          Navigator.pushNamed(context, MyOrderScreens);
+                        break;
+                      case 1:
+                        Navigator.pushNamed(context, ChoiceAddressScreens);
                         break;
                       case 4:
                         Navigator.pushNamed(context, RecentViewScreens,arguments: productVM.listRecent);

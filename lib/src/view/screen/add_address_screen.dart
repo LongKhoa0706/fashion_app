@@ -1,10 +1,20 @@
 import 'package:fashion_app/src/const/app_colors.dart';
 import 'package:fashion_app/src/const/app_font.dart';
+import 'package:fashion_app/src/data/model/address.dart';
+import 'package:fashion_app/src/view/screen/component/addaddress/text_field_address.dart';
+import 'package:fashion_app/src/viewmodel/address_viewmodel.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AddAddressScreen extends StatelessWidget {
+  final nameController = TextEditingController();
+  final phoneController = TextEditingController();
+  final addressDetailController = TextEditingController();
+
+
   @override
   Widget build(BuildContext context) {
+    final addressViewModel = Provider.of<AddressViewModel>(context,listen: false);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -28,51 +38,26 @@ class AddAddressScreen extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 13,vertical: 10),
         child: Column(
           children: [
-            Container(
-              width: double.infinity,
-              padding: EdgeInsets.symmetric(horizontal: 10,vertical: 5),
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(5),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(.1),
-                      blurRadius: 1,
-                      spreadRadius: 1,
-                      offset: Offset(2, 2),
-                    ),
-                  ]),
-              child: TextFormField(
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: "Full name",
-                ),
-              ),
-            ),
             SizedBox(
-              height: 40,
+              height: 10,
             ),
-            Container(
-              width: double.infinity,
-              padding: EdgeInsets.symmetric(horizontal: 10,vertical: 5),
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(5),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(.1),
-                      blurRadius: 1,
-                      spreadRadius: 1,
-                      offset: Offset(2, 2),
-                    ),
-                  ]),
-              child: TextFormField(
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: "Full name",
+            TextFieldAddress(
+
+                textEditingController: nameController,
+                lableText: "Full name",
                 ),
-              ),
+            SizedBox(
+              height: 18,
             ),
+            TextFieldAddress(
+                textEditingController: phoneController,
+                lableText: "Phone"),
+            SizedBox(
+              height: 18,
+            ),
+            TextFieldAddress(
+                textEditingController: addressDetailController,
+                lableText: "Address Description"),
             SizedBox(
               height: 40,
             ),
@@ -89,14 +74,16 @@ class AddAddressScreen extends StatelessWidget {
                     fontSize: 15,
                     fontWeight: FontWeight.normal,
                   ),),
-                onPressed: () {},
+                onPressed: () {
+                  addressViewModel.addAddress(Address(id: "",userName: nameController.text,phone: phoneController.text,addressTitle1: addressDetailController.text,addressTitle2: ""));
+                },
                 child: Text('save address'.toUpperCase()),
               ),
             ),
-
           ],
         ),
       ),
     );
   }
+
 }

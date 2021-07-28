@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 class CartProduct extends StatefulWidget {
   final Product? product;
   final int? index;
+  // final VoidCallback onFavoritePressed;
 
   const CartProduct({Key? key, this.product, this.index}) : super(key: key);
 
@@ -19,18 +20,17 @@ class CartProduct extends StatefulWidget {
 
 class _CartProductState extends State<CartProduct> {
   ProductViewModel? productViewModel;
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
   }
 
+
   @override
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
-    // productViewModel = Provider.of<ProductViewModel>(context,listen: true);
 
   }
 
@@ -84,7 +84,10 @@ class _CartProductState extends State<CartProduct> {
                        //     widget.product?.isLike = 1;
                        //   });
                        // }
-                       value.likeProduct(widget.product!);
+                       // value.likeProduct(widget.product!);
+                       setState(() {
+                         widget.product!.isLike =! widget.product!.isLike!;
+                       });
                      },
                      child: Container(
                          width: 40,
@@ -101,8 +104,8 @@ class _CartProductState extends State<CartProduct> {
                            ],
                          ),
                          child: Icon(
-                           value.isLikee == widget.product?.isLike ? Icons.favorite_border : Icons.favorite ,
-                           color: AppColors.primaryColorGray,
+                           widget.product!.isLike! ?Icons.favorite  :  Icons.favorite_border,
+                           color:  widget.product!.isLike! ?  AppColors.primaryColorRed : AppColors.primaryColorGray,
                            size: 19,
                          )
                      ),
