@@ -1,5 +1,6 @@
 import 'package:fashion_app/src/const/app_font.dart';
 import 'package:fashion_app/src/data/model/order.dart';
+import 'package:fashion_app/src/data/model/product.dart';
 import 'package:flutter/material.dart';
 
 class OrderDetailScreen extends StatelessWidget {
@@ -64,6 +65,8 @@ class OrderDetailScreen extends StatelessWidget {
               shrinkWrap: true,
               padding: EdgeInsets.all(0.0),
               itemBuilder: (_, index) {
+                Product product = order.listItemCart![index].product!;
+
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 10),
                   child: Container(
@@ -87,7 +90,10 @@ class OrderDetailScreen extends StatelessWidget {
                           width: 120,
                           height: 120,
                           decoration: BoxDecoration(
-                            color: Colors.red,
+                            image: DecorationImage(
+                              image: NetworkImage(product.urlImage!.first),
+                              fit: BoxFit.cover
+                            ),
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(8),
                                 bottomLeft: Radius.circular(8)),
@@ -102,7 +108,7 @@ class OrderDetailScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Pullover',
+                                  product.title!,
                                   style: AppFont.semiBold.copyWith(
                                       color: Colors.black, fontSize: 16),
                                 ),
@@ -132,7 +138,7 @@ class OrderDetailScreen extends StatelessWidget {
                                               ),
                                               children: [
                                                 TextSpan(
-                                                  text: "Yellow",
+                                                  text:  product.inventory![0].color,
                                                   style:
                                                       AppFont.regular.copyWith(
                                                     fontSize: 13,
@@ -158,7 +164,7 @@ class OrderDetailScreen extends StatelessWidget {
                                               ),
                                               children: [
                                                 TextSpan(
-                                                  text: "L",
+                                                  text: product.inventory![0].size,
                                                   style:
                                                       AppFont.regular.copyWith(
                                                     fontSize: 13,
@@ -191,7 +197,7 @@ class OrderDetailScreen extends StatelessWidget {
                                               ),
                                               children: [
                                                 TextSpan(
-                                                  text: "3",
+                                                  text: order.listItemCart![index].quantity.toString(),
                                                   style:
                                                       AppFont.regular.copyWith(
                                                     fontSize: 13,
@@ -206,7 +212,7 @@ class OrderDetailScreen extends StatelessWidget {
                                     Align(
                                       alignment: Alignment.bottomRight,
                                       child: Text(
-                                        '200 VND',
+                                        '${product.price.toString()} VND',
                                         textAlign: TextAlign.right,
                                         style: AppFont.medium.copyWith(
                                           fontSize: 13,

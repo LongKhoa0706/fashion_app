@@ -7,26 +7,32 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   final emailController = TextEditingController();
   final passController = TextEditingController();
+   bool isShowPass = false;
 
   @override
   Widget build(BuildContext context) {
-    final authViewModel = Provider.of<AuthViewModel>(context,listen: true);
+    final authViewModel = Provider.of<AuthViewModel>(context, listen: true);
     return Container(
       color: Colors.white,
       child: SafeArea(
         child: Scaffold(
           resizeToAvoidBottomInset: false,
-          backgroundColor: Colors.white,
           body: Container(
             padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 IconButton(
-                    onPressed: () =>Navigator.pop(context),
+                    onPressed: () => Navigator.pop(context),
                     alignment: Alignment.topLeft,
                     padding: EdgeInsets.all(0.0),
                     icon: Icon(
@@ -41,35 +47,118 @@ class LoginScreen extends StatelessWidget {
                   "Login",
                   style: AppFont.bold.copyWith(
                     color: Colors.black,
-                    fontSize: 30,
+                    fontSize: 32,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 SizedBox(
                   height: 40,
                 ),
-                TextFieldAddress(vi
-                    textEditingController: emailController, lableText: "Email"),
+                // TextFieldAddress(vi
+                //     textEditingController: emailController, lableText: "Email"),
+                Container(
+                  width: double.infinity,
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(5),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(.2),
+                          blurRadius: 1,
+                          spreadRadius: 1,
+                          offset: Offset(1, 1),
+                        ),
+                      ]),
+                  child: TextFormField(
+                    controller: emailController,
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      labelText: "Email",
+                      alignLabelWithHint: true, // center labastyle
+                      labelStyle: AppFont.regular.copyWith(
+                        fontSize: 13,
+                        color: Colors.grey,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ),
+
                 SizedBox(
                   height: 10,
                 ),
-                TextFieldAddress(
-                    textEditingController: emailController,
-                    lableText: "Password"),
-                SizedBox(
-                  height: 25,
-                ),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Text(
-                    "Forgot yours password?",
-                    style: AppFont.medium.copyWith(
-                      fontSize: 13,
+                Container(
+                  width: double.infinity,
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(5),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(.2),
+                          blurRadius: 1,
+                          spreadRadius: 1,
+                          offset: Offset(1, 1),
+                        ),
+                      ]),
+                  child: TextFormField(
+                    controller: passController,
+                    obscureText: isShowPass,
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      labelText: "Password",
+                      suffixIcon: GestureDetector(
+                        onTap: (){
+                          setState(() {
+                            isShowPass =! isShowPass;
+                          });
+                        },
+                          child: Icon(
+                        isShowPass ? Icons.visibility : Icons.visibility_off,
+                        size: 16,
+                      )),
+                      alignLabelWithHint: true,
+                      // center labastyle
+                      labelStyle: AppFont.regular.copyWith(
+                        fontSize: 13,
+                        color: Colors.grey,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 ),
                 SizedBox(
-                  height: 30,
+                  height: 25,
+                ),
+                GestureDetector(
+                  onTap: ()=>Navigator.pushNamed(context, ForgotPassScreens),
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: Text(
+                      "Forgot yours password?",
+                      style: AppFont.medium.copyWith(
+                        fontSize: 13,
+                      ),
+                    ),
+                  ),
+                ),
+                Row(
+                  children: [
+                    Checkbox(
+                      activeColor: AppColors.primaryColorRed,
+                      value: true,
+                      onChanged: ( value) {
+
+                      },
+                    ),
+                    Text("Remember me?",style: AppFont.medium.copyWith(
+                      fontSize: 14,
+                    ),),
+                  ],
+                ),
+                SizedBox(
+                  height: 25,
                 ),
                 SizedBox(
                   width: double.infinity,
@@ -82,7 +171,9 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ),
                     onPressed: () {
-                      authViewModel.login().then((value) => Navigator.pop(context));
+                      authViewModel
+                          .login()
+                          .then((value) => Navigator.pop(context));
                     },
                     child: Text(
                       "Login".toUpperCase(),
@@ -93,28 +184,22 @@ class LoginScreen extends StatelessWidget {
                 ),
                 Spacer(),
                 InkWell(
-                  onTap: (){
+                  onTap: () {
                     Navigator.pushNamed(context, RegisterScreens);
                   },
                   child: Center(
-                    child: RichText(
-                      text: TextSpan(
+                      child: RichText(
+                    text: TextSpan(
                         text: "Don't have a account? ",
-                        style: AppFont.medium.copyWith(
-                            fontSize: 13
-                        ),
+                        style: AppFont.medium.copyWith(fontSize: 13),
                         children: [
                           TextSpan(
                             text: "Register",
                             style: AppFont.bold.copyWith(
-                                fontSize: 13,
-                              color: AppColors.primaryColorRed
-                            ),
+                                fontSize: 13, color: AppColors.primaryColorRed),
                           )
-                        ]
-                      ),
-                    )
-                  ),
+                        ]),
+                  )),
                 ),
                 SizedBox(
                   height: 10,

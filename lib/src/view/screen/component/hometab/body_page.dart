@@ -53,6 +53,36 @@ class _BodyPageState extends State<BodyPage> {
               },
             )
           ),
+          SizedBox(
+            height: 30,
+          ),
+          buildHeaderBody(title: "New", description: "Supper new"),
+
+          SizedBox(
+            height: 20,
+          ),
+          SizedBox(
+              height: cardWidth / 0.59,
+              child: ListView.builder(
+                itemCount:  prductVM.listProduct?.length,
+                padding: EdgeInsets.all(0.0),
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (_,index){
+                  Product? product = prductVM.listProduct![index];
+                  return InkWell(
+                    onTap: (){
+                      prductVM.addRecentView(product);
+                      Navigator.pushNamed(context,DetailProductScreens,arguments: product);
+                    },
+                    child: CartProduct(
+                      index: index,
+                      product: product,
+
+                    ),
+                  );
+                },
+              )
+          ),
           // SizedBox(
           //   height: 40,
           // ),

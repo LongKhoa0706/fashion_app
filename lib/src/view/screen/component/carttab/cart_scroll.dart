@@ -12,8 +12,6 @@ class CartScroll extends StatelessWidget {
   final List<Cart> listCart;
   const CartScroll({Key? key, required this.listCart}) : super(key: key);
 
-
-
   @override
   Widget build(BuildContext context) {
     final cartViewModel = Provider.of<CartViewModel>(context, listen: true);
@@ -52,7 +50,7 @@ class CartScroll extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          "MR LONG KHOAr",
+                          "MR JOIN",
                           style: AppFont.medium.copyWith(
                             fontWeight: FontWeight.w500,
                             fontSize: 15,
@@ -77,7 +75,7 @@ class CartScroll extends StatelessWidget {
                       height: 10,
                     ),
                     Text(
-                      "0927827763",
+                      "123456678",
                       style: AppFont.regular.copyWith(
                         fontWeight: FontWeight.w400,
                         color: Colors.black,

@@ -36,7 +36,10 @@ class _PersonalTabState extends State<PersonalTab> {
                 width: 70,
                 height: 70,
                 decoration: BoxDecoration(
-                  color: Colors.red,
+                 image: DecorationImage(
+                   image: NetworkImage('https://st3.depositphotos.com/1037987/15097/i/600/depositphotos_150975580-stock-photo-portrait-of-businesswoman-in-office.jpg'),
+                   fit: BoxFit.cover
+                 ),
                   shape: BoxShape.circle,
                 ),
               ),
@@ -69,9 +72,7 @@ class _PersonalTabState extends State<PersonalTab> {
               )
             ],
           ),
-          SizedBox(
-            height: 40,
-          ),
+
           Expanded(
             child: ListView.separated(
               shrinkWrap: true,

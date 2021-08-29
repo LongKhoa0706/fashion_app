@@ -16,7 +16,6 @@ class CartViewModel extends ChangeNotifier {
 
   addToCart(Product product, Inventory inventoryy) {
     productCount = 0;
-
     if (listCart.isEmpty) {
       listCart.add(
         Cart().copyWith(

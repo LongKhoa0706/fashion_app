@@ -10,6 +10,7 @@ class MyOrderScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cartViewModel = Provider.of<CartViewModel>(context,listen: false);
+
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -48,8 +49,7 @@ class MyOrderScreen extends StatelessWidget {
                       padding: const EdgeInsets.only(bottom: 20),
                       child: InkWell(
                         onTap: (){
-                          print(order.listItemCart!.length);
-                          // Navigator.pushNamed(context, OrderDetailScreens,arguments: order);
+                          Navigator.pushNamed(context, OrderDetailScreens,arguments: order);
                         },
                         child: OrderProduct(
                           order: order,

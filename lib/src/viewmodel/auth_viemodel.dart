@@ -5,7 +5,7 @@ class AuthViewModel extends ChangeNotifier{
   bool isLoggedIn = false;
   bool isLoading = false;
 
-  Future  login() async {
+  Future login() async {
     isLoggedIn = true;
     notifyListeners();
   }
