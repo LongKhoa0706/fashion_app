@@ -27,7 +27,8 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var bottomProvider = Provider.of<BottomNavigationProvider>(context,listen: true);
+    var bottomProvider =
+        Provider.of<BottomNavigationProvider>(context, listen: true);
     return Scaffold(
       backgroundColor: Colors.white,
       body: page[bottomProvider.currentIndex],
@@ -39,31 +40,41 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           unselectedItemColor: AppColors.primaryColorGray,
-          selectedItemColor:AppColors.primaryColorRed ,
+          selectedItemColor: AppColors.primaryColorRed,
           currentIndex: bottomProvider.currentIndex,
-          onTap: (int index){
-            bottomProvider.changePageTab =index;
+          onTap: (int index) {
+            bottomProvider.changePageTab = index;
           },
           items: [
             BottomNavigationBarItem(
-              icon: bottomProvider.currentIndex != 0 ? SvgPicture.asset('assets/image/home_inactive.svg') : SvgPicture.asset('assets/image/home_active.svg'),
-              title: Text('Home'),
+              icon: bottomProvider.currentIndex != 0
+                  ? SvgPicture.asset('assets/image/home_inactive.svg')
+                  : SvgPicture.asset('assets/image/home_active.svg'),
+              label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: bottomProvider.currentIndex != 1  ?  SvgPicture.asset('assets/image/categories_inactive.svg') : SvgPicture.asset('assets/image/categories_active.svg') ,
-              title: Text('Category'),
+              icon: bottomProvider.currentIndex != 1
+                  ? SvgPicture.asset('assets/image/categories_inactive.svg')
+                  : SvgPicture.asset('assets/image/categories_active.svg'),
+              label: 'Category',
             ),
             BottomNavigationBarItem(
-              icon:  bottomProvider.currentIndex != 2 ? SvgPicture.asset('assets/image/bag_inactive.svg') : SvgPicture.asset('assets/image/bag_active.svg'),
-              title: Text('Cart'),
+              icon: bottomProvider.currentIndex != 2
+                  ? SvgPicture.asset('assets/image/bag_inactive.svg')
+                  : SvgPicture.asset('assets/image/bag_active.svg'),
+              label: 'Cart',
             ),
             BottomNavigationBarItem(
-              icon:  bottomProvider.currentIndex != 3 ?SvgPicture.asset('assets/image/hear_inactive.svg') : SvgPicture.asset('assets/image/hear_active.svg'),
-              title: Text('Favorite'),
+              icon: bottomProvider.currentIndex != 3
+                  ? SvgPicture.asset('assets/image/hear_inactive.svg')
+                  : SvgPicture.asset('assets/image/hear_active.svg'),
+              label: 'Favorite',
             ),
             BottomNavigationBarItem(
-              icon:  bottomProvider.currentIndex != 4 ? SvgPicture.asset('assets/image/profile_inactive.svg') : SvgPicture.asset('assets/image/profile_active.svg'),
-              title: Text('Personal'),
+              icon: bottomProvider.currentIndex != 4
+                  ? SvgPicture.asset('assets/image/profile_inactive.svg')
+                  : SvgPicture.asset('assets/image/profile_active.svg'),
+              label: 'Personal',
             ),
           ],
         ),

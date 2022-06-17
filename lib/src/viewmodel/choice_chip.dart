@@ -28,9 +28,7 @@ class _ChoiceOptionState extends State<ChoiceOption> {
             onTap: () {
               setState(() {
                 selectChoice = e;
-                if (widget.onSelectCallBack != null) {
-                  widget.onSelectCallBack(selectChoice);
-                }
+                widget.onSelectCallBack(selectChoice);
               });
             },
             child: Container(
