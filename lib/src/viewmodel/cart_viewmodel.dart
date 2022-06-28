@@ -23,14 +23,14 @@ class CartViewModel extends ChangeNotifier {
         ),
       );
       productCount = listCart.length;
-      print('EMPTY ${productCount}');
+      print('EMPTY $productCount');
     } else {
       for (int i = 0; i < listCart.length; i++) {
         var index = listCart[i]
             .product
             ?.inventory
             ?.indexWhere((element) => element.id == inventoryy.id);
-        debugPrint("INDEX ${index}");
+        debugPrint("INDEX $index");
         if (index != -1) {
           if (listCart[i].quantity < inventoryy.stockQuantity!) {
             listCart[i].quantity++;
@@ -51,7 +51,7 @@ class CartViewModel extends ChangeNotifier {
       }
 
       productCount += listCart.length;
-      print('NOT EMPTY ${productCount}');
+      print('NOT EMPTY $productCount');
     }
     calculatePrice();
     notifyListeners();
